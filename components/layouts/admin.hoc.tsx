@@ -5,6 +5,14 @@ import AdminSidebar from "./admin.menu";
 
 export default class AdminHOC extends Component {
   props: any;
+  state: any;
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      menu: false,
+    };
+  }
 
   render() {
     return (

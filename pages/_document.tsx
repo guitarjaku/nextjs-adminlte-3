@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <div id="sidebar-overlay" data-widget="pushmenu"></div>
       </Html>
     );
   }

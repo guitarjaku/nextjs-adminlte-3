@@ -1,6 +1,7 @@
 import App from "next/app";
 import Head from "next/head";
 import AdminHOC from "../components/layouts/admin.hoc";
+import { CounterProvider } from "../store/CounterProvider";
 // import NProgress from "nprogress";
 
 // NProgress.configure({
@@ -18,15 +19,26 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props;
 
-    console.log(router.pathname);
-
-    return (
-      <AdminHOC>
-        <Head>
-          <title>Website</title>
-        </Head>
-        <Component {...pageProps} />
-      </AdminHOC>
-    );
+    if (router.asPath === "/login") {
+      return (
+        <>
+          <Head>
+            <title>Website</title>
+          </Head>
+          <Component {...pageProps} />
+        </>
+      );
+    } else {
+      return (
+        <AdminHOC>
+          <Head>
+            <title>Website</title>
+          </Head>
+          <CounterProvider>
+            <Component {...pageProps} />
+          </CounterProvider>
+        </AdminHOC>
+      );
+    }
   }
 }

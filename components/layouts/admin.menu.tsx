@@ -13,7 +13,15 @@ const LinkActive = ({ href, children }) => {
   return <Link href={href}>{cloneElement(children, { className })}</Link>;
 };
 
-const AdminSidebar = () => {
+const path = [
+  {
+    title: "Dashboard",
+    icon: <i className="nav-icon fas fa-tachometer-alt" />,
+  },
+  { title: "Machines", icon: <i className="nav-icon fas fa-desktop"></i> },
+];
+
+const AdminSidebar = (props: any) => {
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* Brand Logo */}
@@ -53,20 +61,22 @@ const AdminSidebar = () => {
           >
             {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
-            <li className="nav-item">
-              <LinkActive href="/dashboard">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-tachometer-alt" />
-                  <p>Dashboard</p>
-                </a>
-              </LinkActive>
-            </li>
-            <li className="nav-item">
+            {path.map((p, i) => (
+              <li className="nav-item" key={i}>
+                <LinkActive href={`/${p.title.toLowerCase()}`}>
+                  <a className="nav-link">
+                    {p.icon}
+                    <p>{p.title}</p>
+                  </a>
+                </LinkActive>
+              </li>
+            ))}
+            {/* <li className="nav-item">
               <a href="pages/widgets.html" className="nav-link">
                 <i className="nav-icon fas fa-th" />
                 <p>Widgets</p>
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
         {/* /.sidebar-menu */}
